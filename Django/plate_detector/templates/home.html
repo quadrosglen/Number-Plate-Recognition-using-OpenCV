@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Plate Extractor</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        form {
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        label {
+            color: #777;
+            font-size: 16px;
+            margin-right: 10px; /* Added margin-right for spacing */
+            padding-right: 10px; /* Added padding-right for spacing */
+            border-right: 1px solid #ccc; /* Added border for spacing */
+        }
+        
+        input[type="file"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .centered-button {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+        h2 {
+            color: #fff;
+            background-color: #8cc63f;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Plate Extractor using EasyOCR</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="image_file" style="padding-right: 50px;">Image: </label>
+            <input type="file" name="image_file" id="image_file" accept=".png, .jpg, .jpeg" required>
+        </div>
+        <div>
+            <label for="annotation_file">Annotations: </label>
+            <input type="file" name="annotation_file" id="annotation_file" accept=".xml">
+        </div>
+        <div class="centered-button">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    {% if message %}
+        <h2>{{ message }}</h2>
+    {% endif %}
+</body>
+</html>
